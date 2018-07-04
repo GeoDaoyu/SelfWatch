@@ -14,7 +14,4 @@ export default {
 body {
   margin: 0; 
 }
-#app {
-  text-align: center;
-}
 </style>
