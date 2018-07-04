@@ -5,8 +5,8 @@
         <head-component></head-component>
     </el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <el-aside width="200px"><aside-component></aside-component></el-aside>
+      <el-main><router-view></router-view></el-main>
     </el-container>
     <el-footer>Footer</el-footer>
   </el-container>
@@ -14,11 +14,13 @@
 
 <script>
 import headComponent from "@/components/Head/Head";
+import asideComponent from "@/components/Aside/NavMenu";
 
 export default {
     name: 'System',
     components:{
-        headComponent
+      headComponent,
+      asideComponent
     }
 }
 </script>
@@ -31,9 +33,7 @@ export default {
   }
 
   .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    line-height: 200px;
+    background-color: white;
     height: calc(100vh - 120px);
   }
 
