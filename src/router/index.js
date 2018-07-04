@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import System from '@/components/System'
-import Home from '@/components/Page/Home/Home'
-import Diet from '@/components/Page/Diet/Diet'
-import Sleep from '@/components/Page/Sleep/Sleep'
-import Sport from '@/components/Page/Sport/Sport'
-import Study from '@/components/Page/Study/Study'
+import Home from '@/components/page/home/Home'
+import Diet from '@/components/page/diet/Diet'
+import Sleep from '@/components/page/sleep/Sleep'
+import Sport from '@/components/page/sport/Sport'
+import Study from '@/components/page/study/Study'
 
 Vue.use(Router)
 
