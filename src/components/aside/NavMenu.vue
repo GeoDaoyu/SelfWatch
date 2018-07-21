@@ -5,9 +5,8 @@
             default-active="1"
             router
             text-color="#A2A8B5">
-            <!-- 暂定，等换了Awesome图标再改颜色 -->
                 <el-menu-item index="/system/home" >
-                    <i class="el-icon-menu"></i>
+                    <i class="el-icon-location-outline"></i>
                     <span slot="title">Home</span>
                 </el-menu-item>
                 <el-menu-item index="/system/diet">
@@ -18,7 +17,7 @@
                     <i class="el-icon-menu"></i>
                     <span slot="title">Sleep</span>
                 </el-menu-item>
-                <el-submenu>
+                <el-submenu index="/sub"> <!-- useless index,however without it, will call a warning -->
                     <template slot="title">
                         <i class="el-icon-location"></i>
                         <span>Activity</span>

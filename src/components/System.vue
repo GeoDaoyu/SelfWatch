@@ -34,7 +34,7 @@ export default {
 
   .el-aside {
     background-color: white;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px); //the heights of head and foot both are 60px,by default
   }
 
   .el-main {

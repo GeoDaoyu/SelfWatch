@@ -4,7 +4,22 @@
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Home',
+    data () {
+        return {
+            msg: '首页'
+        }
+    },
+    methods: {
+        sayHello: function () {
+            console.log("hello");
+        }
+    },
+    mounted: function () {
+        process.nextTick(function() {
+            console.log("hi");
+        })
+    }
 }
 </script>
 
