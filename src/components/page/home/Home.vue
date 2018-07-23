@@ -11,14 +11,10 @@ export default {
         }
     },
     methods: {
-        sayHello: function () {
-            console.log("hello");
-        }
+
     },
     mounted: function () {
-        process.nextTick(function() {
-            console.log("hi");
-        })
+        
     }
 }
 </script>
