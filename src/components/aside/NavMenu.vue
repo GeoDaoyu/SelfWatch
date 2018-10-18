@@ -27,6 +27,10 @@
                         <el-menu-item index="/system/study"><i class="el-icon-menu"></i>Study</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
+                <el-menu-item index="/system/filemanage">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">FileManage</span>
+                </el-menu-item>
             </el-menu>
         </el-col>
     </el-row>

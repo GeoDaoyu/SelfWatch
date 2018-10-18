@@ -25,7 +25,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   $system-color: #409EFF;
   .el-header, .el-footer {
@@ -40,6 +39,5 @@ export default {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
-    line-height: 160px;
   }
 </style>

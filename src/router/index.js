@@ -7,6 +7,7 @@ import Diet from '@/components/page/diet/Diet'
 import Sleep from '@/components/page/sleep/Sleep'
 import Sport from '@/components/page/sport/Sport'
 import Study from '@/components/page/study/Study'
+import FileManage from '@/components/page/filemanage/FileManage'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
           path: '/system/study',
           name: 'study',
           component: Study
+        }, 
+        {
+          path: '/system/filemanage',
+          name: 'filemanage',
+          component: FileManage
         }
       ]
     },
