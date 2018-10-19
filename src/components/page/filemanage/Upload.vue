@@ -8,14 +8,33 @@
         :model="fileList" 
         :rules="rules" 
         label-width="80px"
-        status-icon>
-            <el-form-item label="文件名称" prop="name">
-                <el-input v-model="fileList.name"></el-input>
+        status-icon
+        size="small">
+            <el-form-item label="文件" prop="file">
+                <el-upload 
+                ref="upload" 
+                action="" 
+                :on-change="handleChange"
+                :auto-upload="false" 
+                :multiple="false"
+                :show-file-list="false">
+                    <el-button type="primary">选择文件</el-button>
+                </el-upload>
             </el-form-item>
-            <el-form-item label="文件描述" prop="desc">
-                <el-input type="textarea" v-model="fileList.desc"></el-input>
+            <el-form-item label="名称" prop="name">
+                <el-input v-model="fileList.name" placeholder="选择文件后，名称自动获取"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="描述" prop="desc">
+                <el-input 
+                type="textarea" 
+                v-model="fileList.desc" 
+                placeholder="请输入描述" 
+                :autosize="{ minRows: 2}"
+                maxlength="200">
+                </el-input>
+                <span class="textareaCount"> {{ textareaCount }}</span>
+            </el-form-item>
+            <el-form-item style="text-align: right;">
                 <el-button type="primary" @click="onSubmit('form')">提交</el-button>
                 <el-button @click="closeAndReset('form')">取消</el-button>
             </el-form-item>
@@ -54,6 +73,9 @@ export default {
                 desc: ''
             },
             rules: {
+                file: [{
+                    required: true
+                }],
                 name: [
                     {
                         required: true, message: '请输入文件名称', trigger: 'blur'
@@ -70,7 +92,8 @@ export default {
                         min: 5, message: '至少输入 5 个字符', trigger: 'blur'
                     },
                 ]
-            }
+            },
+            textareaCount: 200
         }
     },
     methods: {
@@ -80,15 +103,15 @@ export default {
         onSubmit (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
+                    // do submit
                 } else {
-                    alert('看到有飘红，你还提交？');
                     return false;
                 }
             });
         },
         closeAndReset (formName) {
             this.$refs[formName].resetFields()
+            this.$refs['upload'].clearFiles()
             this.$emit("update:visible", false)
         },
         // 临时测试函数，以后替换为用文件名查询当前用户的文件列表，结果返回count
@@ -103,11 +126,30 @@ export default {
                 }
             }
             return count
+        },
+        handleChange(file) {
+            this.fileList.file = file.raw
+            this.fileList.name = file.name
+        }
+    },
+    watch: {
+        fileList: {
+            deep: true,
+            handler: function (newVal, oldVal) {
+                this.textareaCount = 200 - newVal.desc.length
+            }
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.textareaCount {
+    position:absolute;
+    right: 5px;
+    bottom: 5px; 
+    color: #dcdfe6;
+    line-height: 1.5;
+    font-size: small;
+}
 </style>
