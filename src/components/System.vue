@@ -6,21 +6,26 @@
     </el-header>
     <el-container>
       <el-aside width="200px"><aside-component></aside-component></el-aside>
-      <el-main><router-view></router-view></el-main>
+      <el-main>
+        <router-view></router-view>
+        <msg-dialog/>
+      </el-main>
     </el-container>
     <el-footer>Footer</el-footer>
   </el-container>
 </template>
 
 <script>
-import headComponent from "@/components/Head/Head";
-import asideComponent from "@/components/Aside/NavMenu";
+import headComponent from "@/components/Head/Head"
+import asideComponent from "@/components/Aside/NavMenu"
+import msgDialog from "@/components/msgDialog"
 
 export default {
     name: 'System',
     components:{
       headComponent,
-      asideComponent
+      asideComponent,
+      msgDialog
     }
 }
 </script>

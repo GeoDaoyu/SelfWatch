@@ -32,7 +32,7 @@
                 :autosize="{ minRows: 2}"
                 maxlength="200">
                 </el-input>
-                <span class="textareaCount"> {{ textareaCount }}</span>
+                <span class="textareaCount">{{ textareaCount }}</span>
             </el-form-item>
             <el-form-item style="text-align: right;">
                 <el-button type="primary" @click="onSubmit('form')">提交</el-button>
@@ -65,7 +65,7 @@ export default {
                 }
             }
                 
-        };
+        }
         return {
             fileList: {
                 file: {},
