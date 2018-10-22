@@ -5,10 +5,10 @@
             <h1>Log In</h1>
             </el-form-item>
             <el-form-item >
-            <el-input type="text" placeholder="用户名"></el-input>
+            <el-input type="text" placeholder="用户名" ref="userName" @keyup.enter.native="logIn"></el-input>
             </el-form-item>
             <el-form-item>
-            <el-input size="medium" type="password" placeholder="密码" @keyup.enter="logIn" ></el-input>
+            <el-input size="medium" type="password" placeholder="密码" @keyup.enter.native="logIn"></el-input>
             </el-form-item>
             <el-form-item>
             <el-button plain @click="logIn" class="btn">登录</el-button>
@@ -22,8 +22,11 @@ export default {
     name: 'Login',
     methods: {
         logIn: function () {
-            this.$router.push({path: '/system'});
+            this.$router.push({path: '/system'})
         }
+    },
+    mounted () {
+        this.$refs['userName'].focus()
     }
 }
 </script>

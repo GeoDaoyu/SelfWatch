@@ -18,7 +18,7 @@
 <script>
 import headComponent from "@/components/Head/Head"
 import asideComponent from "@/components/Aside/NavMenu"
-import msgDialog from "@/components/msgDialog"
+import msgDialog from "@/components/MsgDialog"
 
 export default {
     name: 'System',
