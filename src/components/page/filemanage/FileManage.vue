@@ -1,6 +1,7 @@
 <template>
     <div>
         <el-button @click="dialogVisible = true">上传文件</el-button>
+        <li v-for="item in fileList" :key="item">{{ item }}</li>
         <upload 
         :visible.sync="dialogVisible" 
         :title="dialogTitle">
@@ -17,9 +18,18 @@ export default {
     },
     data () {
         return {
+            fileList: [],
             dialogTitle: '添加文件',
             dialogVisible: false
         }
+    },
+    mounted: function () {
+        let that = this
+        this.$http.get('/fs/public')
+        .then(response => {
+            that.fileList = response.data.fileList
+        })
+        console.log(this.fileList)
     }
 }
 </script>
