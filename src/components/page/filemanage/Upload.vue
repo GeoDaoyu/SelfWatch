@@ -103,11 +103,26 @@ export default {
         onSubmit (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    // do submit
+                    this.submit()
                 } else {
                     return false;
                 }
             });
+        },
+        submit () {
+            let formData = new FormData()
+            formData.append('file', this.fileList.file)
+            this.$http.post('/fs/public/' + this.fileList.name, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },
         closeAndReset (formName) {
             this.$refs[formName].resetFields()
