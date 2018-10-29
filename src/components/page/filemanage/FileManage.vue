@@ -6,10 +6,11 @@
         :visible.sync="dialogVisible" 
         :title="dialogTitle">
         </upload>
-        <el-button @click="deleteFile('113.txt')">删除文件</el-button>
+        <br />
         <br />
         <el-input type="text" v-model="fileName"></el-input>
         <el-button @click="downloadFile(fileName)">下载文件</el-button>
+        <el-button @click="deleteFile(fileName)">删除文件</el-button>
     </div>
 </template>
 
@@ -33,17 +34,20 @@ export default {
             this.$http.delete('/fs/public/' + fileName)
             .then(response => {
                 console.log('ok')
-                
-            })
-        },
-        downloadFile (fileName) {
-            this.$http.get('/fs/public/' + fileName)
-            .then(response => {
-                console.log('ok')
             })
             .catch(err => {
                 console.log(err)
             })
+        },
+        downloadFile (fileName) {
+            window.open('http://127.0.0.1:3000/fs/public/' + fileName, '_self')
+            // this.$http.get('/fs/public/' + fileName)
+            // .then(response => {
+            //     console.log('ok')
+            // })
+            // .catch(err => {
+            //     console.log(err)
+            // })
         },
 
         getFileList () {
