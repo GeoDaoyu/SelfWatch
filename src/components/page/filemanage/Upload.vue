@@ -64,7 +64,6 @@ export default {
                     callback();
                 }
             }
-                
         }
         return {
             fileList: {
@@ -112,15 +111,26 @@ export default {
         submit () {
             let formData = new FormData()
             formData.append('file', this.fileList.file)
-            this.$http.post('/fs/public/' + this.fileList.name, formData, {
+            const userName = sessionStorage.getItem('userName')
+            let url = '/fs/' + (!!userName ? userName : 'public/')
+            this.$http.post(url + this.fileList.name, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             })
             .then(response => {
-                console.log(response)
+                if (response.status === 200) {
+                    this.$message({
+                        message: '文件上传成功',
+                        type: 'success'
+                    });
+                    this.closeAndReset('form')
+                } else {
+                    this.$message.error('文件上传失败');
+                }
             })
             .catch(err => {
+                this.$message.error('文件上传失败');
                 console.log(err)
             })
         },
