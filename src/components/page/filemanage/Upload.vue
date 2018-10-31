@@ -112,7 +112,7 @@ export default {
             let formData = new FormData()
             formData.append('file', this.fileList.file)
             const userName = sessionStorage.getItem('userName')
-            let url = '/fs/' + (!!userName ? userName : 'public/')
+            let url = '/fs' + (!!userName ? '/private/' + userName + '/' : '/public/')
             this.$http.post(url + this.fileList.name, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
