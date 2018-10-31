@@ -39,6 +39,13 @@
                 <el-button @click="closeAndReset('form')">取消</el-button>
             </el-form-item>
         </el-form>
+        <div v-if="loading">
+            <div class="masker"></div>
+            <div class="loading">
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="rate" status="success" class="prog"></el-progress>
+                <p class="loading-text">拼命上传中</p>
+            </div>
+        </div>
     </el-dialog>
 </template>
 
@@ -66,6 +73,7 @@ export default {
             }
         }
         return {
+            loading: false,
             fileList: {
                 file: {},
                 name: '',
@@ -79,7 +87,7 @@ export default {
                     {
                         required: true, message: '请输入文件名称', trigger: 'blur'
                     }, {
-                        max: 20, message: '长度不能大于 20 个字符', trigger: 'blur'
+                        max: 50, message: '长度不能大于 50 个字符', trigger: 'blur'
                     }, {
                         validator: checkFileName, trigger: 'change'
                     }
@@ -92,7 +100,8 @@ export default {
                     },
                 ]
             },
-            textareaCount: 200
+            textareaCount: 200,
+            rate: 0
         }
     },
     methods: {
@@ -102,6 +111,7 @@ export default {
         onSubmit (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    this.loading = true
                     this.submit()
                 } else {
                     return false;
@@ -116,6 +126,9 @@ export default {
             this.$http.post(url + this.fileList.name, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
+                },
+                onUploadProgress: (progressEvent) => {
+                    this.rate = parseInt((progressEvent.loaded / progressEvent.total) * 100)
                 }
             })
             .then(response => {
@@ -128,9 +141,11 @@ export default {
                 } else {
                     this.$message.error('文件上传失败');
                 }
+                this.loading = false
             })
             .catch(err => {
                 this.$message.error('文件上传失败');
+                this.loading = false
                 console.log(err)
             })
         },
@@ -176,5 +191,29 @@ export default {
     color: #dcdfe6;
     line-height: 1.5;
     font-size: small;
+}
+.masker {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+.loading {
+    position:absolute;
+    width: 100%;
+    top: 45%;
+    left: 0;
+}
+.loading-text {
+    color: #409eff;
+    text-align: center;
+    font-size: 14px;
+}
+.prog {
+    width:80%;
+    margin: 0 auto;
 }
 </style>
