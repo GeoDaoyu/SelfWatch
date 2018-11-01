@@ -1,10 +1,24 @@
 <template>
-    <div>Study</div>
+    <div>Study
+        <br />
+        <p>res: {{res}}</p>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'Study'
+    name: 'Study',
+    data () {
+        return {
+            res: null
+        }
+    },
+    methods: {
+
+    },
+    mounted () {
+
+    }
 }
 </script>
 

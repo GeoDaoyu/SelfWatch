@@ -71,7 +71,7 @@ export default {
     }
     //#endregion
   },
-  mounted() {
+  mounted () {
     const count = this.getMsgCount()
     if (count > 0) {
       this.getMsg()
