@@ -142,10 +142,12 @@ export default {
                     this.$message.error('文件上传失败');
                 }
                 this.loading = false
+                this.rate = 0
             })
             .catch(err => {
                 this.$message.error('文件上传失败');
                 this.loading = false
+                this.rate = 0
                 console.log(err)
             })
         },
