@@ -40,12 +40,12 @@ export default {
         {
           id: 1,
           state: '未读',
-          content: '你妈叫你回家吃饭',
+          content: '我是一条有23的消息',
           toPath: 'url'
         }, {
           id: 11,
           state: '未读',
-          content: '你爸叫你带瓶酱油回来',
+          content: '我是一条有e的消息',
           toPath: 'url'
         }, {
           id: 12,
