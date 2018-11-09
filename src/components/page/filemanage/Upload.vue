@@ -100,8 +100,12 @@ export default {
                     },
                 ]
             },
-            textareaCount: 200,
             rate: 0
+        }
+    },
+    computed:{
+        textareaCount() {
+            return 200 - this.fileList.desc.length
         }
     },
     methods: {
@@ -172,14 +176,6 @@ export default {
         handleChange(file) {
             this.fileList.file = file.raw
             this.fileList.name = file.name
-        }
-    },
-    watch: {
-        fileList: {
-            deep: true,
-            handler: function (newVal, oldVal) {
-                this.textareaCount = 200 - newVal.desc.length
-            }
         }
     }
 }
